@@ -14,6 +14,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+// Clase que gestiona la conexión y consultas a la base de datos
 public class Bd {
     private static Connection conexion = null;
     private static Statement sentenciaSQL = null;
@@ -24,12 +26,13 @@ public class Bd {
 
     //----------------------------------------------------------------------------------------------------------
 
-    // Conectar a la base de datos
-
+    // Método para conectar a la base de datos
     final Connection conectar() throws SQLException {
         Connection conexion = null;
         try {
+            // Cargar el controlador JDBC para MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
+            // Establecer la conexión con la base de datos MyStore en localhost, usuario "root", contraseña "root"
             conexion = DriverManager.getConnection("jdbc:mysql://localhost/MyStore", "root", "root");
         } catch (ClassNotFoundException cn) {
             cn.printStackTrace();
@@ -37,8 +40,10 @@ public class Bd {
         return conexion;
     }
 
+    // Método para desconectar de la base de datos
     public void desconectar(Connection conexion, Statement sentenciaSQL) {
         try {
+            // Cerrar la sentencia SQL y la conexión
             sentenciaSQL.close();
             conexion.close();
         } catch (SQLException ex) {
@@ -46,7 +51,7 @@ public class Bd {
         }
     }
 
-
+    // Método para iniciar sesión de un usuario
     public boolean iniciarSesion(TextField email, TextField password) {
         boolean encontrado = false;
         ResultSet result;
@@ -55,19 +60,21 @@ public class Bd {
         String passwordAux = password.getText();
 
         try {
+            // Conectar a la base de datos
             Connection conexion = conectar();
             Statement sentenciaSQL = conexion.createStatement();
 
-            // Sentencia para añadir usuarios a la tabla
+            // Sentencia SQL para buscar un usuario con el correo y contraseña proporcionados
             sql = "SELECT userMail, userPasword FROM usuarios where userMail = '" + emailAux + "' and userPasword = '" + passwordAux + "'";
             result = sentenciaSQL.executeQuery(sql);
 
-            // Siempre se ejecuta cada vez que encuentre un dato buscado en la secuencia
+            // Siempre se ejecuta cada vez que encuentra un dato buscado en la secuencia
             if (result.next()) {
                 System.out.println("User found");
                 encontrado = true;
             }
 
+            // Desconectar de la base de datos
             desconectar(conexion, sentenciaSQL);
 
         } catch (SQLException ex) {
@@ -77,6 +84,7 @@ public class Bd {
         return encontrado;
     }
 
+    // Método para buscar un usuario por su correo
     public boolean buscar(TextField email) {
         boolean repetido = false;
         ResultSet result;
@@ -84,14 +92,15 @@ public class Bd {
         String emailAux = email.getText();
 
         try {
+            // Conectar a la base de datos
             Connection conexion = conectar();
             Statement sentenciaSQL = conexion.createStatement();
 
-            // Sentencia para buscar usuarios en la tabla
+            // Sentencia SQL para buscar un usuario con el correo proporcionado
             sql = "SELECT userMail FROM usuarios WHERE userMail = '" + emailAux + "'";
             result = sentenciaSQL.executeQuery(sql);
 
-            // Siempre se ejecuta cada vez que encuentre un dato buscado en la secuencia
+            // Siempre se ejecuta cada vez que encuentra un dato buscado en la secuencia
             if (result.next()) {
                 System.out.println("User found");
                 repetido = true;
@@ -99,6 +108,7 @@ public class Bd {
                 System.out.println("User not found");
             }
 
+            // Desconectar de la base de datos
             desconectar(conexion, sentenciaSQL);
 
         } catch (SQLException ex) {
@@ -107,16 +117,19 @@ public class Bd {
 
         return repetido;
     }
+
+    // Método para obtener la conexión a la base de datos
     public Connection obtenerConexion() {
         Connection conexion = null;
         try {
+            // Cargar el controlador JDBC para MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
+            // Establecer la conexión con la base de datos MyStore en localhost, usuario "root", contraseña "root"
             conexion = DriverManager.getConnection("jdbc:mysql://localhost/MyStore", "root", "root");
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
         }
         return conexion;
     }
-
-
 }
+
