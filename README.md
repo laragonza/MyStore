@@ -25,12 +25,11 @@ El proyecto está estructurado de la siguiente manera:
 
   - Bd.java: Gestiona la conexión y operaciones con la base de datos.
   - HelloApplication.java: Punto de entrada de la aplicación JavaFX.
-  - Home.java: Controlador de la vista principal.
+  - Home.java: Controlador de la vista principal (está en desarrollo).
   - LoginViewController.java: Controlador de la vista de inicio de sesión.
   - MainViewController.java: Controlador de la vista principal.
-  - Product.java: Clase que representa un producto.
+  - Product.java: Clase que representará a todos los productos (está en desarrollo).
   - RegistroViewController.java: Controlador de la vista de registro.
-  - User.java: Clase que representa a un usuario.
 
 ## Características principales
 
