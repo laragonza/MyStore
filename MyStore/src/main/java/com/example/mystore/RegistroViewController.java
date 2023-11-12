@@ -9,8 +9,10 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
 
+// Clase controladora para la vista de registro (RegistroView.fxml)
 public class RegistroViewController {
 
+    // Campos y controles de la interfaz gráfica
     @FXML
     private TextField txtNombre;
 
@@ -29,14 +31,17 @@ public class RegistroViewController {
     @FXML
     private Button btnLogin;
 
+    // Instancias de otras clases necesarias
     HelloApplication main = new HelloApplication();
     Bd baseDatos = new Bd();
     FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("LoginView.fxml"));
     FXMLLoader loaderLogin2 = new FXMLLoader(getClass().getResource("HomeView.fxml"));
+
+    // Método para mostrar la vista de inicio de sesión al hacer clic en el botón correspondiente
     @FXML
     void MostrarViewInicioSesion(ActionEvent event) {
         try {
-            //creamos objeto del Main para poder llamar al metodo start2
+            // Cerrar la página actual y mostrar la vista de inicio de sesión
             main.cerrarPagina(event, btnLogin);
             main.mostrarPagina(event, loaderLogin);
 
@@ -45,6 +50,7 @@ public class RegistroViewController {
         }
     }
 
+    // Método para realizar el registro de un nuevo usuario al hacer clic en el botón correspondiente
     @FXML
     void showHome(ActionEvent event) {
         String nombreAux = txtNombre.getText();
@@ -93,4 +99,3 @@ public class RegistroViewController {
         }
     }
 }
-
