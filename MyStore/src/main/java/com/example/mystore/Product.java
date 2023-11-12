@@ -5,14 +5,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-//package com.example.mystore.model;
-
+// Clase que representa un producto en la aplicación
 public class Product {
     private int id;
     private String name;
     private double price;
     private String description;
 
+    // Constructor para inicializar un objeto Product con valores proporcionados
     public Product(int id, String name, double price, String description) {
         this.id = id;
         this.name = name;
@@ -20,7 +20,7 @@ public class Product {
         this.description = description;
     }
 
-    // Getters y setters
+    // Getters y setters para acceder y modificar los atributos privados
 
     public int getId() {
         return id;
@@ -54,6 +54,7 @@ public class Product {
         this.description = description;
     }
 
+    // Método toString para obtener una representación de cadena del objeto Product
     @Override
     public String toString() {
         return "Product{" +
@@ -64,5 +65,3 @@ public class Product {
                 '}';
     }
 }
-
-
