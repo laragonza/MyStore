@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea">
+    <top>
+        <!-- Aquí puedes colocar el menú superior con el nombre del usuario, buscador, lista de deseos, etc. -->
+        <HBox spacing="20.0">
+            <Label fx:id="welcomeUserLabel" />
+            <TextField fx:id="searchField" promptText="Buscar productos" />
+            <Button text="Lista de deseos" />
+            <Button text="Cesta de compra" />
+        </HBox>
+    </top>
+    <center>
+        <!-- Aquí puedes colocar la lista de productos de la tienda. Puedes usar una tabla, cuadrícula o cualquier diseño que desees. -->
+        <TableView fx:id="productTable">
+            <!-- Configuración de las columnas de la tabla -->
+            <columns>
+                <TableColumn text="Producto" />
+                <TableColumn text="Precio" />
+                <!-- Otras columnas según tus necesidades -->
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
